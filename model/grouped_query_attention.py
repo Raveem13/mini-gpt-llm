@@ -43,8 +43,8 @@ class GroupedQueryAttention(nn.Module):
         scores = scores.masked_fill(mask == 0, float('-inf'))
         # 5. Concatenate heads and apply output projection
         out = torch.softmax(scores, dim=-1) @ v_heads
-        print(out.shape)
+        # print(out.shape) 
         output = out.transpose(1, 2).reshape(B, T, -1)
-        print(out.shape)
+        # print(out.shape) 
         # 6. Return rounded output (decimals=4)
         return torch.round(self.output_proj(output), decimals=4)
